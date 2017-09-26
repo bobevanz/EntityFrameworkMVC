@@ -1,7 +1,23 @@
 ﻿@model int
 @{
     ViewBag.Title = "Grade";
-}
+    int nbr = int.Parse(Html.ValueFor(m => m).ToString());
+    string grade = null;
+    switch (nbr) {
+        case 1:
+            grade = "A";
+            break;
+        case 2:
+            grade = "B";
+            break;
+        case 3:
+            grade = "C";
+            break;
+        default:
+            grade = "F";
+            break;
+    }
+    }
 
-<h2>Grade Student @Html.DisplayFor(m => m)</h2>
-
+<h2>Grade</h2>
+<p> The value for ID is @Html.DisplayFor(m=>m)</p>
