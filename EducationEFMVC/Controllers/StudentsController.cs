@@ -16,6 +16,7 @@ namespace EducationEFMVC.Controllers
 
         //GET : Students/Grade/1
         public ActionResult Grade(int? id) {
+           
             return View(id);
         }
 
