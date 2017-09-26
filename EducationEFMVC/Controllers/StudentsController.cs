@@ -13,10 +13,16 @@ namespace EducationEFMVC.Controllers
     public class StudentsController : Controller
     {
         private EducationEFMVCContext db = new EducationEFMVCContext();
+
+        //GET : Students/Grade/1
+        public ActionResult Grade(int? id) {
+            return View(id);
+        }
+
         //GET : Students/Print/5
 
         public ActionResult Print(int? id){
-            return View();
+            return View(id);
         }
         // GET: Students
         public ActionResult Index()
