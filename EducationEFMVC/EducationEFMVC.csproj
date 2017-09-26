@@ -149,6 +149,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MajorsController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -165,8 +166,13 @@
     <Compile Include="Migrations\201709181548374_added Phone and Email to student.Designer.cs">
       <DependentUpon>201709181548374_added Phone and Email to student.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709261851267_added the Major class.cs" />
+    <Compile Include="Migrations\201709261851267_added the Major class.Designer.cs">
+      <DependentUpon>201709261851267_added the Major class.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EducationEFMVCContext.cs" />
+    <Compile Include="Models\Major.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -214,6 +220,11 @@
     <Content Include="Views\Students\Index.cshtml" />
     <Content Include="Views\Students\Print.cshtml" />
     <Content Include="Views\Students\Grade.cshtml" />
+    <Content Include="Views\Majors\Create.cshtml" />
+    <Content Include="Views\Majors\Delete.cshtml" />
+    <Content Include="Views\Majors\Details.cshtml" />
+    <Content Include="Views\Majors\Edit.cshtml" />
+    <Content Include="Views\Majors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -240,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709181548374_added Phone and Email to student.resx">
       <DependentUpon>201709181548374_added Phone and Email to student.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709261851267_added the Major class.resx">
+      <DependentUpon>201709261851267_added the Major class.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
