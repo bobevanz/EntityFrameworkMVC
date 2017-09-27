@@ -28,9 +28,15 @@ namespace EducationEFMVC.Controllers
         // GET: Students
         public ActionResult Index()
         {
+            var students = db.Students.ToList();
+            foreach (var student in students)
+            {
+                student.Major = db.Majors.Find(student.MajorId);
+            }
             return View(db.Students.ToList());
+            // return view(db.Students.ToList());
         }
-
+        
         // GET: Students/Details/5
         public ActionResult Details(int? id)
         {
@@ -42,6 +48,10 @@ namespace EducationEFMVC.Controllers
             if (student == null)
             {
                 return HttpNotFound();
+            }
+            if(student.MajorId != null) { 
+            
+                student.Major = db.Majors.Find(student.MajorId);
             }
             return View(student);
         }
