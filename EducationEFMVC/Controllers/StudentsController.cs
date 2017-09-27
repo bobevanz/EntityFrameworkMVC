@@ -14,6 +14,15 @@ namespace EducationEFMVC.Controllers
     {
         private EducationEFMVCContext db = new EducationEFMVCContext();
 
+        private ActionResult List()
+        {
+            //var students = db.Students.ToList();
+            //foreach (var student in students)
+            //{
+            //    student.Major = db.Majors.Find(student.MajorId);
+           // }
+            return new JsonNetResult { Data = db.Students.ToList() };       // visual studio crashed, wont work now   
+            }
         //GET : Students/Grade/1
         public ActionResult Grade(int? id) {
            
@@ -33,7 +42,7 @@ namespace EducationEFMVC.Controllers
             {
                 student.Major = db.Majors.Find(student.MajorId);
             }
-            return View(db.Students.ToList());
+            return View(students);
             // return view(db.Students.ToList());
         }
         
