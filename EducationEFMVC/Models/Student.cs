@@ -15,6 +15,6 @@ namespace EducationEFMVC.Models
         public string Phone { get; set; }
 
         public int? MajorId { get; set; }
-        public Major Major { get; set; }
+        public virtual Major Major { get; set; }
     }
 }

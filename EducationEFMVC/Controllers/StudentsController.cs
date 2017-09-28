@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EducationEFMVC.Models;
+using EducationEFMVC.Utility;
 
 namespace EducationEFMVC.Controllers
 {
@@ -14,24 +15,22 @@ namespace EducationEFMVC.Controllers
     {
         private EducationEFMVCContext db = new EducationEFMVCContext();
 
-        private ActionResult List()
+        public ActionResult List()
         {
-            //var students = db.Students.ToList();
-            //foreach (var student in students)
-            //{
-            //    student.Major = db.Majors.Find(student.MajorId);
-           // }
-            return new JsonNetResult { Data = db.Students.ToList() };       // visual studio crashed, wont work now   
+            var students = db.Students.ToList();
+            foreach (var student in students)
+            {
+                student.Major = db.Majors.Find(student.MajorId);
             }
-        //GET : Students/Grade/1
-        public ActionResult Grade(int? id) {
-           
-            return View(id);
+
+            return new JsonNetResult
+            {
+                Data = db.Students.ToList()
+            };
         }
 
-        //GET : Students/Print/5
-
-        public ActionResult Print(int? id){
+        public ActionResult Grade(int? id)
+        {
             return View(id);
         }
         // GET: Students
@@ -42,10 +41,10 @@ namespace EducationEFMVC.Controllers
             {
                 student.Major = db.Majors.Find(student.MajorId);
             }
+
             return View(students);
-            // return view(db.Students.ToList());
         }
-        
+
         // GET: Students/Details/5
         public ActionResult Details(int? id)
         {
@@ -58,10 +57,11 @@ namespace EducationEFMVC.Controllers
             {
                 return HttpNotFound();
             }
-            if(student.MajorId != null) { 
-            
+            if (student.MajorId != null)
+            {
                 student.Major = db.Majors.Find(student.MajorId);
             }
+
             return View(student);
         }
 
@@ -76,7 +76,7 @@ namespace EducationEFMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,FirstName,LastName,SAT,GPA,Phone,Email")] Student student)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,SAT,GPA,PhoneNumber,Email")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -108,7 +108,7 @@ namespace EducationEFMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,FirstName,LastName,SAT,GPA,Phone,Email")] Student student)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,SAT,GPA,PhoneNumber,Email")] Student student)
         {
             if (ModelState.IsValid)
             {
