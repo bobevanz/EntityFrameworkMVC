@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -21,14 +22,25 @@ namespace EducationEFMVC.Controllers
             foreach (var student in students)
             {
                 student.Major = db.Majors.Find(student.MajorId);
-            }
+            } 
 
-            return new JsonNetResult
-            {
-                Data = db.Students.ToList()
-            };
+            return new JsonNetResult{Data = students};
         }
-
+        public ActionResult Add([Bind(Include = "Id,FirstName,LastName,SAT,GPA,Phone,Email,MajorId")] Student student)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Students.Add(student);
+                db.SaveChanges();
+                return Json(new msg { Result = "Success", Message = "Add Successful!" },
+                    JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new msg { Result = "Failed", Message = "Model-state dictionary is invalid." },
+                    JsonRequestBehavior.AllowGet);
+            }
+        }
         public ActionResult Grade(int? id)
         {
             return View(id);
